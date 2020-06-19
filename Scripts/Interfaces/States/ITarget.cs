@@ -1,16 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DoubTech.CastleDefender.AI.Interfaces.Units;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.States
 {
     public interface ITarget
     {
-        bool HasTarget {
-            get;
-        }
-
-        bool TargetedByFriendly {
+        IUnit TargetUnit {
             get;
         }
 
@@ -27,6 +24,16 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States
         }
 
         Vector3 NearestOpenTargetAttackPosition {
+            get;
+        }
+
+        /// <summary>
+        /// Returns the last known closest attack position relative to the target. To get the actual position
+        /// you should add this position to the targets current position.
+        /// 
+        /// NOTE: This should be recalculated on demand ratelimited to once per half second.
+        /// </summary>
+        Vector3[] NearestRelativeAttackPositions {
             get;
         }
     }

@@ -61,6 +61,19 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
             set;
         }
 
+        Vector3 Position {
+            get;
+        }
+
+        Vector3 Velocity {
+            get;
+        }
+        bool LookingForPath { get; }
+        float DistanceToMoveTarget { get; }
+        float StoppingDistance { get; }
+        Vector3 Forward { get; }
+        Vector3 Right { get; }
+
         void Jump();
 
         void Dodge(float direction);
@@ -68,6 +81,12 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         void Duck();
 
         void MoveTo(Vector3 position);
+        
+        void RotateTowards(Vector3 position);
+
+        void StopRotatingTowards();
+
+        void Stop();
 
         /// <summary>
         /// Roate the unit by angle degrees

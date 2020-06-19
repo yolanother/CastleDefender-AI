@@ -6,7 +6,7 @@ using DoubTech.CastleDefender.AI.Interfaces.Controls;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
-    public class IUnit : MonoBehaviour
+    public interface IUnit
     {
         #region Stats
         IHealth Health {
@@ -16,6 +16,14 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
         IStamina Stamina {
             get;
         }
+
+        IFaction Faction {
+            get;
+        }
+
+        ITroop Troop {
+            get;
+        }
         #endregion
 
         #region Combat States
@@ -23,7 +31,11 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
             get;
         }
 
-        IAttacker Attacker {
+        IAttackerInfo Attacker {
+            get;
+        }
+
+        bool IsActive {
             get;
         }
         #endregion
@@ -40,6 +52,15 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
         IMovement MovementControl {
             get;
         }
+
+        ITargetControl TargetControl {
+            get;
+        }
+
         #endregion
+
+        GameObject GameObject {
+            get;
+        }
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DoubTech.CastleDefender.CombatSystem.Interfaces;
+using DoubTech.CastleDefender.AI.Interfaces.Units;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.States
 {
