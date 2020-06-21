@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DoubTech.CastleDefender.AI.Interfaces.States;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Controls
 {
@@ -83,6 +84,8 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         void MoveTo(Vector3 position);
         
         void RotateTowards(Vector3 position);
+
+        void RotateTowards(ITarget value);
 
         void StopRotatingTowards();
 

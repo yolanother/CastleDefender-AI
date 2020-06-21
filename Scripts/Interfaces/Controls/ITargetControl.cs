@@ -27,5 +27,6 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         int LayerMask { get; }
 
         void StopTargeting(ITarget attacker);
+        bool WithinAttackDistanceOf(ITarget value);
     }
 }

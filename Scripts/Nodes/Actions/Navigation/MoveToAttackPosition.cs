@@ -17,8 +17,11 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
         [Range(0, 1)]
         public BBParameter<float> customSpeed = 1;
         public BBParameter<float> keepDistance = 0.1f;
+        public BBParameter<float> targetPositionReadjustThreashold = 2;
+        private Vector3 targetPosition;
 
         protected override void OnExecute() {
+
             switch (speed.value) {
                 case MovementSpeed.Run:
                     agent.MovementControl.Speed = 1;
@@ -34,16 +37,26 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
         }
 
         protected override void OnUpdate() {
-            if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
+            if (agent.TargetControl.WithinAttackDistanceOf(target.value)) {
                 EndAction();
+            } else if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
+                EndAction();
+            } else if (target.value.TargetUnit.Health.IsDead) {
+                EndAction(false);
+            } else {
+                var position = target.value.TargetPosition;
+                if(Vector3.Distance(position, targetPosition) > targetPositionReadjustThreashold.value) {
+                    DoSeek();
+                }
             }
         }
 
         void DoSeek() {
             NavMeshHit hit;
+            targetPosition = target.value.TargetPosition;
             if (NavMesh.SamplePosition(target.value.NearestOpenTargetAttackPosition, out hit, float.PositiveInfinity, NavMesh.AllAreas)) {
                 agent.MovementControl.MoveTo(hit.position);
-                agent.MovementControl.RotateTowards(target.value.TargetPosition);
+                agent.MovementControl.RotateTowards(target.value);
             }
         }
 

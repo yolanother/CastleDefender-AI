@@ -9,5 +9,13 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States.Stats
         string Name {
             get;
         }
+
+        Color PrimaryColor {
+            get;
+        }
+
+        Color SecondaryColor {
+            get;
+        }
     }
 }

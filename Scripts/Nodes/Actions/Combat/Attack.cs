@@ -30,7 +30,14 @@ namespace DoubTech.CastleDefender.AI.Actions.Combat {
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
-		protected override void OnExecute(){
+		protected override void OnExecute() {
+			if(target.value.TargetUnit.Health.IsDead) {
+				EndAction(false);
+				return;
+			}
+
+			agent.TargetControl.Target = target.value;
+
 			var s = strength.value;
 			if(useRandomStrength.value) {
 				s = Random.Range(0, 1.0f);

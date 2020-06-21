@@ -20,11 +20,17 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States
             get;
         }
 
+        string WeaponType { get; }
+
         /// <summary>
         /// Gets the stamina cost of an attack at the given strength with the currently equipped weapon
         /// </summary>
         /// <param name="strength"></param>
         /// <returns></returns>
         int GetStaminaCost(float strength);
+
+        IUnit WeaponOwner {
+            get;
+        }
     }
 }

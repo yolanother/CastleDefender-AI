@@ -6,9 +6,12 @@ using DoubTech.CastleDefender.AI.Interfaces.Controls;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
-    public interface IUnit
-    {
+    public interface IUnit {
         #region Stats
+        string Name {
+            get;
+        }
+
         IHealth Health {
             get;
         }
@@ -60,6 +63,10 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
         #endregion
 
         GameObject GameObject {
+            get;
+        }
+
+        IUnitColors Colors {
             get;
         }
     }
