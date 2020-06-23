@@ -54,9 +54,10 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
         void DoSeek() {
             NavMeshHit hit;
             targetPosition = target.value.TargetPosition;
-            if (NavMesh.SamplePosition(target.value.NearestOpenTargetAttackPosition, out hit, float.PositiveInfinity, NavMesh.AllAreas)) {
-                agent.MovementControl.MoveTo(hit.position);
+            if (agent.MovementControl.MoveTo(target.value.NearestOpenTargetAttackPosition)) {
                 agent.MovementControl.RotateTowards(target.value);
+            } else {
+                EndAction(false);
             }
         }
 

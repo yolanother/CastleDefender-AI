@@ -7,7 +7,8 @@ using DoubTech.CastleDefender.AI.Interfaces.Units;
 namespace DoubTech.CastleDefender.AI.Interfaces.States
 {
     public interface IWeapon
-    {
+    {        
+
         float MinAttackDistance {
             get;
         }
@@ -20,7 +21,7 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States
             get;
         }
 
-        string WeaponType { get; }
+        WeaponTypes WeaponType { get; }
 
         /// <summary>
         /// Gets the stamina cost of an attack at the given strength with the currently equipped weapon
@@ -32,5 +33,20 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States
         IUnit WeaponOwner {
             get;
         }
+    }
+
+    public enum WeaponTypes
+    {
+        Unarmed,
+        Longsword,
+        ShortSword,
+        SwordAndShield,
+        Bow,
+        Crossbow,
+        HandAxe,
+        BattleAxe,
+        Halbred,
+        Spear,
+        Polearm
     }
 }

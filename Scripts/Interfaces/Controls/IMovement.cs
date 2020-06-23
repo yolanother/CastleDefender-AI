@@ -81,7 +81,7 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
 
         void Duck();
 
-        void MoveTo(Vector3 position);
+        bool MoveTo(Vector3 position);
         
         void RotateTowards(Vector3 position);
 

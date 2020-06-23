@@ -55,10 +55,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
                 wanderPos = (Random.insideUnitSphere * max) + position;
             }
 
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(wanderPos, out hit, float.PositiveInfinity, NavMesh.AllAreas)) {
-                agent.MovementControl.MoveTo(hit.position);
-            }
+            agent.MovementControl.MoveTo(wanderPos);
         }
 
         protected override void OnPause() { OnStop(); }

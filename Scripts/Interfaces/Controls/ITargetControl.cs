@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DoubTech.CastleDefender.AI.Interfaces.States;
+using DoubTech.CastleDefender.AI.Interfaces.Units;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Controls
 {
@@ -27,6 +28,7 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         int LayerMask { get; }
 
         void StopTargeting(ITarget attacker);
+        void StopTargeting(IUnit attacker);
         bool WithinAttackDistanceOf(ITarget value);
     }
 }
