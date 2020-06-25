@@ -60,6 +60,10 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
             get;
         }
 
+        IEmoteControl EmoteControl {
+            get;
+        }
+
         #endregion
 
         GameObject GameObject {
