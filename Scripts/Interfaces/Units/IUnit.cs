@@ -8,6 +8,11 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
     public interface IUnit {
         #region Stats
+
+        int Id {
+            get;
+        }
+
         string Name {
             get;
         }

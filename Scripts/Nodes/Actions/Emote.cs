@@ -24,7 +24,9 @@ namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			agent.EmoteControl.Emote(emoteName.value, success => EndAction(success));
+			if (Random.Range(0, 1f) <= chanceToEmote.value) {
+				agent.EmoteControl.Emote(emoteName.value, success => EndAction(success));
+			}
 		}
 	}
 }
