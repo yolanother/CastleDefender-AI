@@ -1,5 +1,4 @@
 using DoubTech.CastleDefender.AI.Enums;
-using DoubTech.CastleDefender.AI.Interfaces.States;
 using DoubTech.CastleDefender.AI.Interfaces.Units;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
@@ -9,19 +8,20 @@ using UnityEngine.AI;
 namespace DoubTech.CastleDefender.AI.Nodes.Actions{
 
 	[Category("Castle Defender/Navigation")]
-	[Description("Causes the unit to move into an open attack position around the target")]
-	public class MoveToAttackPosition : ActionTask<IUnit>
+	[Description("Causes the unit to wander around a specific position on the map")]
+	public class WanderAroundPosition : ActionTask<IUnit>
     {
-        public BBParameter<ITarget> target;
+        [RequiredField]
+        public BBParameter<Vector3> target;
         public BBParameter<MovementSpeed> speed = MovementSpeed.Run;
         [Range(0, 1)]
         public BBParameter<float> customSpeed = 1;
         public BBParameter<float> keepDistance = 0.1f;
-        public BBParameter<float> targetPositionReadjustThreashold = 2;
-        private Vector3 targetPosition;
+        public BBParameter<float> minWanderDistance = 5;
+        public BBParameter<float> maxWanderDistance = 20;
+        public bool repeat = true;
 
         protected override void OnExecute() {
-
             switch (speed.value) {
                 case MovementSpeed.Run:
                     agent.MovementControl.Speed = 1;
@@ -33,29 +33,28 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
                     agent.MovementControl.Speed = customSpeed.value;
                     break;
             }
-            DoSeek();
+            DoWander();
         }
 
         protected override void OnUpdate() {
-            if (target.value.TargetUnit.Health.IsDead) {
-                EndAction(false);
-            } else if (agent.TargetControl.WithinAttackDistanceOf(target.value)) {
-                EndAction();
-            } else if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
-                EndAction();
-            } else {
-                DoSeek();
+            if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
+                if (repeat) {
+                    DoWander();
+                } else {
+                    EndAction();
+                }
             }
         }
 
-        void DoSeek() {
-            NavMeshHit hit;
-            targetPosition = target.value.TargetPosition;
-            if (agent.MovementControl.MoveTo(target.value.NearestOpenTargetAttackPosition)) {
-                agent.MovementControl.RotateTowards(target.value);
-            } else {
-                EndAction(false);
-            }
+        void DoWander() {
+            var min = minWanderDistance.value;
+            var max = maxWanderDistance.value;
+            min = Mathf.Clamp(min, 0.01f, max);
+            max = Mathf.Clamp(max, min, max);
+            var position = target.value;
+            var wanderPos = Random.insideUnitSphere * (max - min);
+
+            agent.MovementControl.MoveTo(wanderPos + wanderPos.normalized * min);
         }
 
         protected override void OnPause() { OnStop(); }

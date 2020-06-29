@@ -23,7 +23,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
 		protected override void OnExecute(){
 			if (!agent.Attacker.HasAttacker) EndAction(false);
 			else {
-				target.value = agent.Attacker.ClosestAttacker;
+				target.value = agent.TargetControl.GetTarget(agent.Attacker.ClosestAttacker);
 				EndAction(true);
 			}
 		}

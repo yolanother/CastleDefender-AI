@@ -3,6 +3,7 @@ using DoubTech.CastleDefender.AI.Interfaces.States.Stats;
 using DoubTech.CastleDefender.AI.Interfaces.States;
 using DoubTech.CastleDefender.AI.Interfaces.Controls.Combat;
 using DoubTech.CastleDefender.AI.Interfaces.Controls;
+using DoubTech.CastleDefender.AI.Interfaces.Troops;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
@@ -31,6 +32,7 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
 
         ITroop Troop {
             get;
+            set;
         }
         #endregion
 

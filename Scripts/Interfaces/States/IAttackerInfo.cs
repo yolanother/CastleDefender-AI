@@ -12,11 +12,11 @@ namespace DoubTech.CastleDefender.AI.Interfaces.States
             get;
         }
 
-        ITarget[] Attackers {
+        IUnit[] Attackers {
             get;
         }
 
-        ITarget ClosestAttacker {
+        IUnit ClosestAttacker {
             get;
         }
 

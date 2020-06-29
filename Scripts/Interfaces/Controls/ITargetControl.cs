@@ -30,5 +30,12 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         void StopTargeting(ITarget attacker);
         void StopTargeting(IUnit attacker);
         bool WithinAttackDistanceOf(ITarget value);
+
+        bool WithinAttackDistanceOfTarget
+        {
+            get;
+        }
+
+        ITarget GetTarget(IUnit unit);
     }
 }
