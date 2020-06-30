@@ -1,15 +1,16 @@
-using DoubTech.CastleDefender.AI.Interfaces.States;
-using DoubTech.CastleDefender.AI.Interfaces.Units;
+using DoubTech.CastleDefender.AI.Interfaces.Troops;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
+using UnityEngine;
 
 
-namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
+namespace DoubTech.CastleDefender.AI.Nodes.Actions.Troops{
 
-	[Category("Castle Defender/Combat/Target")]
-	[Description("Gets the current closest attacker")]
-	public class GetAttacker : ActionTask<IUnit>{
-		BBParameter<ITarget> target;
+	[Category("Castle Defender/Troops/Movement")]
+	[Description("Sets the troop target rotation.")]
+	public class SetTroopRotation : ActionTask<ITroop>
+	{
+		public BBParameter<float> rotation;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
@@ -20,12 +21,10 @@ namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
-		protected override void OnExecute(){
-			if (!agent.AttackerInfo.HasAttacker) EndAction(false);
-			else {
-				target.value = agent.TargetControl.GetTarget(agent.AttackerInfo.ClosestAttacker);
-				EndAction(true);
-			}
+		protected override void OnExecute()
+		{
+			agent.TroopRotation = rotation.value;
+			EndAction(true);
 		}
 
 		//Called once per frame while the action is active.

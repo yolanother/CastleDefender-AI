@@ -1,31 +1,31 @@
-using DoubTech.CastleDefender.AI.Interfaces.States;
-using DoubTech.CastleDefender.AI.Interfaces.Units;
+using DoubTech.CastleDefender.AI.Enums;
+using DoubTech.CastleDefender.AI.Events;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
+using UnityEngine;
 
+namespace DoubTech.CastleDefender.AI.Nodes.Actions.Troops{
 
-namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
-
-	[Category("Castle Defender/Combat/Target")]
-	[Description("Gets the current closest attacker")]
-	public class GetAttacker : ActionTask<IUnit>{
-		BBParameter<ITarget> target;
+	[Category("Castle Defender/Game Play")]
+	[Description("Returns the current game mode")]
+	public class GetGameMode : ActionTask<GameObject>
+	{
+		public BBParameter<GameModes> gameMode;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit(){
-			return null;
+			return null == GameEventRegistry.GetGameMode ? "Event registry has not been set up to get game modes." : null;
 		}
 
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
-		protected override void OnExecute(){
-			if (!agent.AttackerInfo.HasAttacker) EndAction(false);
-			else {
-				target.value = agent.TargetControl.GetTarget(agent.AttackerInfo.ClosestAttacker);
-				EndAction(true);
-			}
+		protected override void OnExecute()
+		{
+			gameMode.value = GameEventRegistry.GetGameMode();
+
+			EndAction(true);
 		}
 
 		//Called once per frame while the action is active.

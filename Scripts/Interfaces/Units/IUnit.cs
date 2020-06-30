@@ -7,7 +7,7 @@ using DoubTech.CastleDefender.AI.Interfaces.Troops;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
-    public interface IUnit {
+    public interface IUnit : IMovable {
         #region Stats
 
         int Id {
@@ -41,11 +41,16 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
             get;
         }
 
-        IAttackerInfo Attacker {
+        IAttackerInfo AttackerInfo {
             get;
         }
 
         bool IsActive {
+            get;
+        }
+
+        IControlPointState ControlPointState
+        {
             get;
         }
         #endregion

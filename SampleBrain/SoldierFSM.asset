@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
   m_Name: SoldierFSM
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"emoteName":{"_value":"Battle
-    Cry"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Spawn
-    Battle Cry","_position":{"x":220.0,"y":34.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"actions":[{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"},{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"},{"emoteName":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Pick
-    a Target","_position":{"x":440.1188,"y":175.2413},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"actions":[{"target":{"_name":"_Target"},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"targetPositionReadjustThreashold":{"_value":2.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.MoveToAttackPosition"},{"target":{"_name":"_Target"},"useRandomStrength":{"_value":true},"strength":{"_value":0.5},"attackName":{},"$type":"DoubTech.CastleDefender.AI.Actions.Combat.Attack"}]},"_position":{"x":164.0,"y":318.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"speed":{},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"minWanderDistance":{"_value":5.0},"maxWanderDistance":{"_value":20.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.Wander"}]},"_position":{"x":287.197,"y":550.4863},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"initialTarget":{},"bestTarget":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.BestTargetChagned"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"target":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
-  _objectReferences: []
+  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[]},"_position":{"x":141.8943,"y":51.17497},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_nestedFSM":{"_value":1},"_position":{"x":361.714,"y":159.3403},"$type":"NodeCanvas.StateMachines.NestedFSMState","$id":"1"},{"_nestedBT":{"_value":2},"_position":{"x":-122.1221,"y":160.5033},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"2"}],"connections":[{"_condition":{"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.Troops.HasTroop"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.Troops.HasTroop"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 39fd7cc411427434fa02fb5f7ca6e67b, type: 2}
+  - {fileID: 11400000, guid: cb3e4dda98832cb4a97146c61c41ef4d, type: 2}
   _graphSource:
     _version: 3.05
     _category: 
     _comments: 
-    _translation: {x: 235, y: 6}
+    _translation: {x: 449, y: 4}
     _zoomFactor: 0.8597954
   _haltSerialization: 0
 #---GRAPH_START---
@@ -32,133 +32,44 @@ MonoBehaviour:
 #        {
 #            "_actionList": {
 #                "executionMode": 1,
-#                "actions": [
-#                    {
-#                        "emoteName": {
-#                            "_value": "Battle Cry"
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"
-#                    }
-#                ]
+#                "actions": []
 #            },
-#            "_name": "Spawn Battle Cry",
 #            "_position": {
-#                "x": 220.0,
-#                "y": 34.0
+#                "x": 141.8943,
+#                "y": 51.17497
 #            },
 #            "$type": "NodeCanvas.StateMachines.ActionState",
 #            "$id": "0"
 #        },
 #        {
-#            "_actionList": {
-#                "actions": [
-#                    {
-#                        "target": {
-#                            "_name": "_Target"
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"
-#                    },
-#                    {
-#                        "target": {
-#                            "_name": "_Target"
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"
-#                    },
-#                    {
-#                        "emoteName": {
-#
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"
-#                    }
-#                ]
+#            "_nestedFSM": {
+#                "_value": 1
 #            },
-#            "_name": "Pick a Target",
 #            "_position": {
-#                "x": 440.1188,
-#                "y": 175.2413
+#                "x": 361.714,
+#                "y": 159.3403
 #            },
-#            "$type": "NodeCanvas.StateMachines.ActionState",
+#            "$type": "NodeCanvas.StateMachines.NestedFSMState",
 #            "$id": "1"
 #        },
 #        {
-#            "_actionList": {
-#                "actions": [
-#                    {
-#                        "target": {
-#                            "_name": "_Target"
-#                        },
-#                        "speed": {
-#                            "_value": 1
-#                        },
-#                        "customSpeed": {
-#                            "_value": 1.0
-#                        },
-#                        "keepDistance": {
-#                            "_value": 0.1
-#                        },
-#                        "targetPositionReadjustThreashold": {
-#                            "_value": 2.0
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Actions.MoveToAttackPosition"
-#                    },
-#                    {
-#                        "target": {
-#                            "_name": "_Target"
-#                        },
-#                        "useRandomStrength": {
-#                            "_value": true
-#                        },
-#                        "strength": {
-#                            "_value": 0.5
-#                        },
-#                        "attackName": {
-#
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Actions.Combat.Attack"
-#                    }
-#                ]
+#            "_nestedBT": {
+#                "_value": 2
 #            },
 #            "_position": {
-#                "x": 164.0,
-#                "y": 318.0
+#                "x": -122.1221,
+#                "y": 160.5033
 #            },
-#            "$type": "NodeCanvas.StateMachines.ActionState",
+#            "$type": "NodeCanvas.StateMachines.NestedBTState",
 #            "$id": "2"
-#        },
-#        {
-#            "_actionList": {
-#                "executionMode": 1,
-#                "actions": [
-#                    {
-#                        "speed": {
-#
-#                        },
-#                        "customSpeed": {
-#                            "_value": 1.0
-#                        },
-#                        "keepDistance": {
-#                            "_value": 0.1
-#                        },
-#                        "minWanderDistance": {
-#                            "_value": 5.0
-#                        },
-#                        "maxWanderDistance": {
-#                            "_value": 20.0
-#                        },
-#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Actions.Wander"
-#                    }
-#                ]
-#            },
-#            "_position": {
-#                "x": 287.197,
-#                "y": 550.4863
-#            },
-#            "$type": "NodeCanvas.StateMachines.ActionState",
-#            "$id": "3"
 #        }
 #    ],
 #    "connections": [
 #        {
+#            "_condition": {
+#                "_invert": true,
+#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.Troops.HasTroop"
+#            },
 #            "_sourceNode": {
 #                "$ref": "0"
 #            },
@@ -169,72 +80,13 @@ MonoBehaviour:
 #        },
 #        {
 #            "_condition": {
-#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"
+#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.Troops.HasTroop"
 #            },
 #            "_sourceNode": {
-#                "$ref": "1"
+#                "$ref": "0"
 #            },
 #            "_targetNode": {
 #                "$ref": "2"
-#            },
-#            "$type": "NodeCanvas.StateMachines.FSMConnection"
-#        },
-#        {
-#            "_condition": {
-#                "_invert": true,
-#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"
-#            },
-#            "_sourceNode": {
-#                "$ref": "1"
-#            },
-#            "_targetNode": {
-#                "$ref": "3"
-#            },
-#            "$type": "NodeCanvas.StateMachines.FSMConnection"
-#        },
-#        {
-#            "_condition": {
-#                "_invert": true,
-#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"
-#            },
-#            "_sourceNode": {
-#                "$ref": "2"
-#            },
-#            "_targetNode": {
-#                "$ref": "3"
-#            },
-#            "$type": "NodeCanvas.StateMachines.FSMConnection"
-#        },
-#        {
-#            "_condition": {
-#                "initialTarget": {
-#
-#                },
-#                "bestTarget": {
-#
-#                },
-#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.BestTargetChagned"
-#            },
-#            "_sourceNode": {
-#                "$ref": "2"
-#            },
-#            "_targetNode": {
-#                "$ref": "1"
-#            },
-#            "$type": "NodeCanvas.StateMachines.FSMConnection"
-#        },
-#        {
-#            "_condition": {
-#                "target": {
-#
-#                },
-#                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"
-#            },
-#            "_sourceNode": {
-#                "$ref": "3"
-#            },
-#            "_targetNode": {
-#                "$ref": "1"
 #            },
 #            "$type": "NodeCanvas.StateMachines.FSMConnection"
 #        }

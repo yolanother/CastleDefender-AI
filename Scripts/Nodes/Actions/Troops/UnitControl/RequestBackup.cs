@@ -1,15 +1,15 @@
-using DoubTech.CastleDefender.AI.Interfaces.States;
 using DoubTech.CastleDefender.AI.Interfaces.Units;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 
 
-namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
+namespace DoubTech.CastleDefender.AI.Nodes.Actions.Troops.UnitControl{
 
-	[Category("Castle Defender/Combat/Target")]
-	[Description("Gets the current closest attacker")]
-	public class GetAttacker : ActionTask<IUnit>{
-		BBParameter<ITarget> target;
+	[Category("Castle Defender/Troops/Unit Control")]
+	[Description("Asks the troop for backup units to help with a target")]
+	public class RequestBackup : ActionTask<IUnit>
+	{
+		private BBParameter<int> backupSize = 1;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
@@ -21,11 +21,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Conditions.States{
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute(){
-			if (!agent.AttackerInfo.HasAttacker) EndAction(false);
-			else {
-				target.value = agent.TargetControl.GetTarget(agent.AttackerInfo.ClosestAttacker);
-				EndAction(true);
-			}
+			EndAction(agent.Troop.BackupUnit(agent, backupSize.value));
 		}
 
 		//Called once per frame while the action is active.

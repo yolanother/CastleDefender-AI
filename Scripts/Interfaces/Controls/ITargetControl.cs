@@ -37,5 +37,6 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
         }
 
         ITarget GetTarget(IUnit unit);
+        void AssignTarget(IUnit unit);
     }
 }

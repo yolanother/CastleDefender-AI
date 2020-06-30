@@ -6,9 +6,16 @@ using DoubTech.CastleDefender.AI.Interfaces.Units;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Troops
 {
-    public interface ITroop
+    public enum TroopState
     {
-        IMovement Movement
+        Attack,
+        Retreat,
+        HoldFormation
+    }
+    
+    public interface ITroop : IMovable
+    {
+        IControlPointState ControlPointState
         {
             get;
         }
@@ -38,6 +45,12 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Troops
             get;
         }
 
+        TroopState TroopState
+        {
+            get;
+            set;
+        }
+
         bool IsAttacking
         {
             get;
@@ -63,6 +76,12 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Troops
             get;
         }
 
+        int TroopCapacity
+        {
+            get;
+            set;
+        }
+
         bool IsTroopUnderAttack
         {
             get;
@@ -74,7 +93,7 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Troops
             set;
         }
 
-        ITarget NextAvailableTarget
+        IUnit NextAvailableTarget
         {
             get;
         }
@@ -89,9 +108,16 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Troops
             get;
         }
 
-        void BackupUnit(IUnit unit, int backupSize = 0);
+        void Reset();
 
-        void AssignUnitToTroopTarget(IUnit unit);
+        Vector3 StartPosition { get; set; }
+        float StartRotation { get; set; }
+        Vector3 TroopPosition { get; set; }
+        float TroopRotation { get; set; }
+
+        bool BackupUnit(IUnit unit, int backupSize = 0);
+
+        bool AssignUnitToTroopTarget(IUnit unit);
 
         void AssignUnitToTroop(IUnit unit);
 
