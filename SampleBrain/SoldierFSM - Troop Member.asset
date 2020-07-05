@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
-  m_Name: SoldierFSM
+  m_Name: SoldierFSM - Troop Member
   m_EditorClassIdentifier: 
   _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"emoteName":{"_value":"Battle
-    Cry"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Spawn
-    Battle Cry","_position":{"x":220.0,"y":34.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"actions":[{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"},{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"},{"emoteName":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Pick
+    Cry"},"chanceToEmote":{"_value":1.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Spawn
+    Battle Cry","_position":{"x":220.0,"y":34.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"actions":[{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"},{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"},{"emoteName":{},"chanceToEmote":{"_value":1.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"}]},"_name":"Pick
     a Target","_position":{"x":440.1188,"y":175.2413},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"actions":[{"target":{"_name":"_Target"},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"targetPositionReadjustThreashold":{"_value":2.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.MoveToAttackPosition"},{"target":{"_name":"_Target"},"useRandomStrength":{"_value":true},"strength":{"_value":0.5},"attackName":{},"$type":"DoubTech.CastleDefender.AI.Actions.Combat.Attack"}]},"_position":{"x":164.0,"y":318.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"speed":{},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"minWanderDistance":{"_value":5.0},"maxWanderDistance":{"_value":20.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.Wander"}]},"_position":{"x":287.197,"y":550.4863},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasTarget"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"initialTarget":{},"bestTarget":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.BestTargetChagned"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"target":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _objectReferences: []
   _graphSource:
@@ -36,6 +36,9 @@ MonoBehaviour:
 #                    {
 #                        "emoteName": {
 #                            "_value": "Battle Cry"
+#                        },
+#                        "chanceToEmote": {
+#                            "_value": 1.0
 #                        },
 #                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"
 #                    }
@@ -67,6 +70,9 @@ MonoBehaviour:
 #                    {
 #                        "emoteName": {
 #
+#                        },
+#                        "chanceToEmote": {
+#                            "_value": 1.0
 #                        },
 #                        "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.States.Emote"
 #                    }

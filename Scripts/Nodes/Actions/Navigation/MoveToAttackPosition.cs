@@ -51,7 +51,12 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
         void DoSeek() {
             NavMeshHit hit;
             targetPosition = target.value.TargetPosition;
-            if (agent.MovementControl.MoveTo(target.value.NearestOpenTargetAttackPosition)) {
+            var movePos = target.value.NearestOpenTargetAttackPosition;
+            if(Vector3.positiveInfinity == movePos) {
+                Debug.Log(target.name + " has no open attack points. Target is no longer valid.");
+                agent.TargetControl.Target = null;
+                EndAction(false);
+            } else if (agent.MovementControl.MoveTo(movePos)) {
                 agent.MovementControl.RotateTowards(target.value);
             } else {
                 EndAction(false);

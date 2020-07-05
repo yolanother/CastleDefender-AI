@@ -4,6 +4,7 @@ using DoubTech.CastleDefender.AI.Interfaces.States;
 using DoubTech.CastleDefender.AI.Interfaces.Controls.Combat;
 using DoubTech.CastleDefender.AI.Interfaces.Controls;
 using DoubTech.CastleDefender.AI.Interfaces.Troops;
+using DoubTech.CastleDefender.AI.Interfaces.Navigation;
 
 namespace DoubTech.CastleDefender.AI.Interfaces.Units
 {
@@ -76,6 +77,12 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Units
             get;
         }
 
+        #endregion
+
+        #region Objectives
+        IWaypoints Waypoints {
+            get;
+        }
         #endregion
 
         GameObject GameObject {

@@ -54,7 +54,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
             var position = target.value;
             var wanderPos = Random.insideUnitSphere * (max - min);
 
-            agent.MovementControl.MoveTo(wanderPos + wanderPos.normalized * min);
+            agent.MovementControl.MoveTo(position + wanderPos.normalized * min);
         }
 
         protected override void OnPause() { OnStop(); }

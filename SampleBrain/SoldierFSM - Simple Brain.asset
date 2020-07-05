@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f945e777233a59f4aba40aeca29093a6, type: 3}
   m_Name: SoldierFSM - Simple Brain
   m_EditorClassIdentifier: 
-  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"actions":[{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"},{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"},{"target":{"_name":"_Target"},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"targetPositionReadjustThreashold":{"_value":2.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.MoveToAttackPosition"},{"target":{"_name":"_Target"},"useRandomStrength":{"_value":true},"strength":{"_value":0.5},"attackName":{},"$type":"DoubTech.CastleDefender.AI.Actions.Combat.Attack"}]},"_repeatStateActions":true,"_position":{"x":247.7334,"y":298.9084},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"target":{},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"minWanderDistance":{"_value":5.0},"maxWanderDistance":{"_value":20.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.WanderAroundPosition"}]},"_position":{"x":469.8792,"y":157.0141},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"}],"connections":[{"_condition":{"target":{},"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"target":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"actions":[{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.GetBestTarget"},{"target":{"_name":"_Target"},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.SetTarget"},{"target":{"_name":"_Target"},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"targetPositionReadjustThreashold":{"_value":2.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.MoveToAttackPosition"},{"target":{"_name":"_Target"},"useRandomStrength":{"_value":true},"strength":{"_value":0.5},"attackName":{},"$type":"DoubTech.CastleDefender.AI.Actions.Combat.Attack"}]},"_repeatStateActions":true,"_position":{"x":247.7334,"y":298.9084},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"actions":[{"waypoint":{"_name":"_WanderPoint"},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.GetWanderWaypoint"},{"target":{"_name":"_WanderPoint","_targetVariableID":"f2fed367-99e1-416a-b09c-932118d9642e"},"speed":{"_value":1},"customSpeed":{"_value":1.0},"keepDistance":{"_value":0.1},"minWanderDistance":{"_value":5.0},"maxWanderDistance":{"_value":20.0},"$type":"DoubTech.CastleDefender.AI.Nodes.Actions.WanderAroundPosition"}]},"_position":{"x":469.8792,"y":157.0141},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"}],"connections":[{"_condition":{"target":{},"_invert":true,"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"target":{},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.States.HasPotentialTarget"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _objectReferences: []
   _graphSource:
     _version: 3.05
     _category: 
     _comments: 
-    _translation: {x: 289, y: -62}
-    _zoomFactor: 0.7248682
+    _translation: {x: 159, y: -98}
+    _zoomFactor: 1
   _haltSerialization: 0
 #---GRAPH_START---
 #The pretty formatted json serialization bellow is only a reference to help in version control diff. Other than that it is not used at all.
@@ -86,11 +86,17 @@ MonoBehaviour:
 #        },
 #        {
 #            "_actionList": {
-#                "executionMode": 1,
 #                "actions": [
 #                    {
+#                        "waypoint": {
+#                            "_name": "_WanderPoint"
+#                        },
+#                        "$type": "DoubTech.CastleDefender.AI.Nodes.Actions.GetWanderWaypoint"
+#                    },
+#                    {
 #                        "target": {
-#
+#                            "_name": "_WanderPoint",
+#                            "_targetVariableID": "f2fed367-99e1-416a-b09c-932118d9642e"
 #                        },
 #                        "speed": {
 #                            "_value": 1
