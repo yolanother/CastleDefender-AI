@@ -53,7 +53,6 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
             targetPosition = target.value.TargetPosition;
             var movePos = target.value.NearestOpenTargetAttackPosition;
             if(float.IsInfinity(movePos.x)) {
-                Debug.Log(target.name + " has no open attack points. Target is no longer valid.");
                 agent.TargetControl.Target = null;
                 EndAction(false);
             } else if (agent.MovementControl.MoveTo(movePos)) {
