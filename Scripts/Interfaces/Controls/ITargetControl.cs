@@ -38,5 +38,8 @@ namespace DoubTech.CastleDefender.AI.Interfaces.Controls
 
         ITarget GetTarget(IUnit unit);
         void AssignTarget(IUnit unit);
+
+        float DistanceTo(ITarget target);
+        float DistanceTo(IUnit unit);
     }
 }

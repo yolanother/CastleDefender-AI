@@ -2,6 +2,7 @@ using DoubTech.CastleDefender.AI.Enums;
 using DoubTech.CastleDefender.AI.Events;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
+using UnityEngine;
 
 
 namespace DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay{
@@ -21,6 +22,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay{
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck(){
+			Debug.Log("AARON: Game mode: " + GameEventRegistry.GetGameMode() + "==" + gameMode.value);
 			return gameMode.value == GameEventRegistry.GetGameMode();
 		}
 	}

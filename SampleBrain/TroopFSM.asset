@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TroopFSM
   m_EditorClassIdentifier: 
   _serializedGraph: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[]},"_name":"Waiting
-    for Game Mode","_position":{"x":699.0,"y":20.0},"$type":"NodeCanvas.StateMachines.ActionState"},{"_position":{"x":709.0,"y":92.0},"$type":"NodeCanvas.StateMachines.AnyState","$id":"1"},{"_nestedBT":{"_value":1},"_name":"Control
-    Point Game Mode","_position":{"x":464.0,"y":217.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"2"},{"_nestedBT":{},"_name":"Team
-    Deathmatch","_position":{"x":864.0,"y":194.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"3"}],"connections":[{"_condition":{"gameMode":{"_value":2},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"gameMode":{"_value":3},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+    for Game Mode","_position":{"x":699.0,"y":20.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_nestedBT":{"_value":1},"_name":"Control
+    Point Game Mode","_position":{"x":464.0,"y":217.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"1"},{"_nestedBT":{},"_name":"Team
+    Deathmatch","_position":{"x":882.0,"y":211.0},"$type":"NodeCanvas.StateMachines.NestedBTState","$id":"2"}],"connections":[{"_condition":{"gameMode":{"_value":2},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"gameMode":{"_value":3},"$type":"DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _objectReferences:
   - {fileID: 0}
   - {fileID: 11400000, guid: 3aa161e86e5b131479db620ae7f3e4b1, type: 2}
@@ -23,7 +23,7 @@ MonoBehaviour:
     _version: 3.05
     _category: 
     _comments: 
-    _translation: {x: 0, y: 0}
+    _translation: {x: -377, y: 125}
     _zoomFactor: 1
   _haltSerialization: 0
 #---GRAPH_START---
@@ -41,15 +41,8 @@ MonoBehaviour:
 #                "x": 699.0,
 #                "y": 20.0
 #            },
-#            "$type": "NodeCanvas.StateMachines.ActionState"
-#        },
-#        {
-#            "_position": {
-#                "x": 709.0,
-#                "y": 92.0
-#            },
-#            "$type": "NodeCanvas.StateMachines.AnyState",
-#            "$id": "1"
+#            "$type": "NodeCanvas.StateMachines.ActionState",
+#            "$id": "0"
 #        },
 #        {
 #            "_nestedBT": {
@@ -61,7 +54,7 @@ MonoBehaviour:
 #                "y": 217.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
-#            "$id": "2"
+#            "$id": "1"
 #        },
 #        {
 #            "_nestedBT": {
@@ -69,11 +62,11 @@ MonoBehaviour:
 #            },
 #            "_name": "Team Deathmatch",
 #            "_position": {
-#                "x": 864.0,
-#                "y": 194.0
+#                "x": 882.0,
+#                "y": 211.0
 #            },
 #            "$type": "NodeCanvas.StateMachines.NestedBTState",
-#            "$id": "3"
+#            "$id": "2"
 #        }
 #    ],
 #    "connections": [
@@ -85,10 +78,10 @@ MonoBehaviour:
 #                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"
 #            },
 #            "_sourceNode": {
-#                "$ref": "1"
+#                "$ref": "0"
 #            },
 #            "_targetNode": {
-#                "$ref": "2"
+#                "$ref": "1"
 #            },
 #            "$type": "NodeCanvas.StateMachines.FSMConnection"
 #        },
@@ -100,10 +93,10 @@ MonoBehaviour:
 #                "$type": "DoubTech.CastleDefender.AI.Nodes.Conditions.GamePlay.IsGameMode"
 #            },
 #            "_sourceNode": {
-#                "$ref": "1"
+#                "$ref": "0"
 #            },
 #            "_targetNode": {
-#                "$ref": "3"
+#                "$ref": "2"
 #            },
 #            "$type": "NodeCanvas.StateMachines.FSMConnection"
 #        }

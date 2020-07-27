@@ -40,9 +40,9 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
             if (target.value.TargetUnit.Health.IsDead) {
                 EndAction(false);
             } else if (agent.TargetControl.WithinAttackDistanceOf(target.value)) {
-                EndAction();
+                EndAction(true);
             } else if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
-                EndAction();
+                EndAction(true);
             } else {
                 DoSeek();
             }
@@ -52,14 +52,14 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
             NavMeshHit hit;
             targetPosition = target.value.TargetPosition;
             var movePos = target.value.NearestOpenTargetAttackPosition;
-            if(Vector3.positiveInfinity == movePos) {
+            if(float.IsInfinity(movePos.x)) {
                 Debug.Log(target.name + " has no open attack points. Target is no longer valid.");
                 agent.TargetControl.Target = null;
                 EndAction(false);
             } else if (agent.MovementControl.MoveTo(movePos)) {
                 agent.MovementControl.RotateTowards(target.value);
             } else {
-                EndAction(false);
+                EndAction(agent.TargetControl.WithinAttackDistanceOf(target.value));
             }
         }
 
