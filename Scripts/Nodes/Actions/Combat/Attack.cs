@@ -1,5 +1,6 @@
 using DoubTech.CastleDefender.AI.Interfaces.States;
 using DoubTech.CastleDefender.AI.Interfaces.Units;
+using DoubTech.CastleDefender.AI.Nodes.Actions;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using UnityEngine;
@@ -8,42 +9,22 @@ namespace DoubTech.CastleDefender.AI.Actions.Combat {
 
 	[Category("Castle Defender/Combat")]
 	[Description("Attempts to trigger an attack at the desired strength")]
-	public class Attack : ActionTask<IUnit>{
+	public class Attack : TargetUnitTask {
 		[SerializeField]
-		public BBParameter<ITarget> target;
-		[SerializeField]
-		public BBParameter<bool> useRandomStrength = false;
+		public BBParameter<bool> useRandomStrength = true;
 		[SerializeField]
 		public BBParameter<float> strength = 0.5f;
 		[SerializeField]
 		public BBParameter<string> attackName = null;
 
-		private bool attackComplete;
-		private bool attackSuccess;
-
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
-		protected override string OnInit(){
-			return target.value == null ? "No target to attack." : null;
-		}
-
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
-		protected override void OnExecute() {
-			if(target.value.TargetUnit.Health.IsDead) {
-				EndAction(false);
-				return;
-			}
-
-			agent.TargetControl.Target = target.value;
-
+		protected override void OnExecuteOnTarget(ITarget target) {
 			var s = strength.value;
 			if(useRandomStrength.value) {
 				s = Random.Range(0, 1.0f);
 			}
-			attackComplete = false;
-			attackSuccess = false;
 
 			if (null != attackName.value) {
 				if (!agent.AttackControl.Attack(attackName.value, CompleteAttack)) {
@@ -53,9 +34,7 @@ namespace DoubTech.CastleDefender.AI.Actions.Combat {
 				CompleteAttack(false);
 			}
 
-			if (null != target.value) {
-				agent.MovementControl.RotateTowards(target.value.TargetPosition);
-			}
+			agent.MovementControl.RotateTowards(target.TargetPosition);
 		}
 
 		private void CompleteAttack(bool success) {

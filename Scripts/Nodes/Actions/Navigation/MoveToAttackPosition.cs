@@ -10,9 +10,8 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
 
 	[Category("Castle Defender/Navigation")]
 	[Description("Causes the unit to move into an open attack position around the target")]
-	public class MoveToAttackPosition : ActionTask<IUnit>
+	public class MoveToAttackPosition : TargetUnitTask
     {
-        public BBParameter<ITarget> target;
         public BBParameter<MovementSpeed> speed = MovementSpeed.Run;
         [Range(0, 1)]
         public BBParameter<float> customSpeed = 1;
@@ -20,7 +19,7 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
         public BBParameter<float> targetPositionReadjustThreashold = 2;
         private Vector3 targetPosition;
 
-        protected override void OnExecute() {
+        protected override void OnExecuteOnTarget(ITarget target) {
 
             switch (speed.value) {
                 case MovementSpeed.Run:
@@ -33,32 +32,32 @@ namespace DoubTech.CastleDefender.AI.Nodes.Actions{
                     agent.MovementControl.Speed = customSpeed.value;
                     break;
             }
-            DoSeek();
+            DoSeek(target);
         }
 
-        protected override void OnUpdate() {
-            if (target.value.TargetUnit.Health.IsDead) {
+        protected override void OnUpdate(ITarget target) {
+            if (target.TargetUnit.Health.IsDead) {
                 EndAction(false);
-            } else if (agent.TargetControl.WithinAttackDistanceOf(target.value)) {
+            } else if (agent.TargetControl.WithinAttackDistanceOf(target)) {
                 EndAction(true);
             } else if (!agent.MovementControl.LookingForPath && agent.MovementControl.DistanceToMoveTarget <= agent.MovementControl.StoppingDistance + keepDistance.value) {
                 EndAction(true);
             } else {
-                DoSeek();
+                DoSeek(target);
             }
         }
 
-        void DoSeek() {
+        void DoSeek(ITarget target) {
             NavMeshHit hit;
-            targetPosition = target.value.TargetPosition;
-            var movePos = target.value.NearestOpenTargetAttackPosition;
+            targetPosition = target.TargetPosition;
+            var movePos = target.NearestOpenTargetAttackPosition;
             if(float.IsInfinity(movePos.x)) {
                 agent.TargetControl.Target = null;
                 EndAction(false);
             } else if (agent.MovementControl.MoveTo(movePos)) {
-                agent.MovementControl.RotateTowards(target.value);
+                agent.MovementControl.RotateTowards(target);
             } else {
-                EndAction(agent.TargetControl.WithinAttackDistanceOf(target.value));
+                EndAction(agent.TargetControl.WithinAttackDistanceOf(target));
             }
         }
 
